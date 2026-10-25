@@ -43,7 +43,6 @@ namespace NexIsland.Settings
             "Lyrics",
             "Battery",
             "Network",
-            "Ai",
             "Search",
             "Routines",
             "Launcher",
@@ -61,7 +60,6 @@ namespace NexIsland.Settings
         };
 
         public bool AdaptiveIslandMode { get; set; } = true;
-        public bool EnableAiIsland { get; set; } = true;
         public bool EnableUniversalSearch { get; set; } = true;
         public bool EnableSmartRoutines { get; set; } = true;
 
@@ -75,8 +73,8 @@ namespace NexIsland.Settings
         public string AccentColorHex { get; set; } = "#3B82F6"; // Elegant modern electric blue
         public double CompactWidth { get; set; } = 220;
         public double CompactHeight { get; set; } = 34;
-        public double ExpandedWidth { get; set; } = 390;
-        public double ExpandedHeight { get; set; } = 240;
+        public double ExpandedWidth { get; set; } = 400;
+        public double ExpandedHeight { get; set; } = 260;
         public double CornerRadius { get; set; } = 17;
         public double OpacityLevel { get; set; } = 0.98;
         public double AnimationDurationSeconds { get; set; } = 0.35;

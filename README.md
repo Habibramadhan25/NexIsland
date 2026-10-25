@@ -1,7 +1,7 @@
 # NexIsland 🏝️ — Ultimate Dynamic Island for Windows 10 & 11
-### Modern WPF / .NET 8 • Smart AI Copilot • Universal Search (`Alt + Space`) • Realtime Engine
+### Modern WPF / .NET 8 • 20 Unlocked Modules • Universal Search (`Alt + Space`) • Realtime Engine
 
-**NexIsland** is an ultra-modern, lightweight, modular, and interactive Dynamic Island application engineered natively for **Windows 10 and Windows 11**. Inspired by premium mobile capsule interfaces, NexIsland transforms your desktop experience by providing an always-accessible, fluid hub for real-time media, AI assistance, universal search, workspace automation, system hardware telemetry, focus management, and quick system controls.
+**NexIsland** is an ultra-modern, lightweight, modular, and interactive Dynamic Island application engineered natively for **Windows 10 and Windows 11**. Inspired by premium mobile capsule interfaces, NexIsland transforms your desktop experience by providing an always-accessible, fluid hub for real-time media, universal search, workspace automation, system hardware telemetry, focus management, and quick system controls.
 
 [![Release](https://img.shields.io/badge/Release-v0.1.0--beta.1-blue.svg)](https://github.com/Habibramadhan25/NexIsland/releases)
 [![Platform](https://img.shields.io/badge/Platform-Windows%2010%20%7C%2011%20(x64)-0078D6.svg)](https://microsoft.com/windows)
@@ -12,10 +12,11 @@
 
 ## 🌟 Flagship Features (v0.1.0-beta.1)
 
-### 1. 🤖 Smart AI Island
-- **In-Island AI Copilot**: Accessible directly inside the capsule without opening third-party browser windows.
-- **Offline Intelligence**: Built-in rule-based engine providing instant text summarization, task checklists, Pomodoro study plans, and Windows power shortcut recommendations.
-- **Encrypted Cloud Connect**: Supports OpenAI, Ollama, and Groq compatible APIs. API keys are encrypted on-device using **Windows DPAPI** (`ProtectedData`) in `%APPDATA%\NexIsland\ai_vault.dat`. Keys are never stored in plain text or transmitted without explicit user prompts.
+### 1. 🎛️ 20 Unlocked Modules & Direct Navigation Bar
+- **Direct 1-Click Navigation Bar**: A scrollable bottom bar with 20 quick access buttons allowing you to jump instantly to any module:
+  `Music → Controls → Lyrics → Visualizer → System → Battery → Network → Search → Routines → Launcher → Notifications → Clipboard → Weather → Calendar → Focus → Activity → Gaming → File Drop → Themes → Plugins`
+- **Fluid Horizontal Gestures**: Supports chevron button clicking, mouse dragging, mouse wheel scrolling with debounce, and keyboard arrow navigation.
+- **Zero Settings Windows**: Module order reordering, Windows startup, and theme presets are all controlled directly inside the island under the *Themes & Preferences* module.
 
 ### 2. 🔍 Universal Search (`Alt + Space`)
 - **Global Floating Launcher**: Activated anywhere in Windows by pressing `Alt + Space`.
@@ -30,12 +31,7 @@
   - **Battery Saver Mode**: Auto-triggers when laptop battery drops below `<= 20%`.
   - **Music Mode & Scheduled Routines**: Trigger playback and custom routines based on time of day.
 
-### 4. 🎛️ Fluid Swipe Navigation (21 Modules)
-- Fluid horizontal gesture navigation supporting mouse drag, mouse wheel scrolling with debounce, and keyboard arrow keys:
-  `Music → System → Focus → Lyrics → Battery → Network → AI → Search → Routines → Launcher → Notifications → Weather → Calendar → Clipboard → Visualizer → Quick Controls → Gaming → File Drop → Activity → Themes → Plugins`
-- **Zero Settings Windows**: Module order reordering, Windows startup, and theme presets are all controlled directly inside the island under the *Themes & Preferences* module.
-
-### 5. 📡 Realtime Core Engine & Live Data Integration
+### 4. 📡 Realtime Core Engine & Live Data Integration
 - **Live Status Badges**: Every module displays verified connection state (`LIVE`, `SYNCING`, `OFFLINE`, `UNAVAILABLE`) with real-time diagnostics.
 - **Windows Media Session (GSMTC)**: Real-time track metadata, album art, Play/Pause synchronization, accurate time elapsed/duration (no `00:00` bug), and interactive drag-and-seek scrubbing.
 - **Hardware Quick Controls**: Real-time display brightness via WMI (`WmiMonitorBrightness`) with debounce and Windows Core Audio (`IAudioEndpointVolume`) master volume control with dynamic speaker/headphone switching.
@@ -55,7 +51,7 @@
 
 | Release File | Size | SHA-256 Checksum |
 | :--- | :--- | :--- |
-| **`NexIsland-v0.1.0-beta.1-Setup.exe`** | ~6.77 MB | `3C22A47E94265D3E02B72F9E0DA269E35F1F1D3FC1442DF67F6F384E02DAD406` |
+| **`NexIsland-v0.1.0-beta.1-Setup.exe`** | ~6.77 MB | `A0C3C9A84D6A8A7E2AE8AC3D6663A06A716B5B1A65AEAA4781FFB3FA31E9E423` |
 
 ### Option 2: Portable Package
 Extract `dist/NexIsland-win-x64` to any folder and run `NexIsland.exe`.

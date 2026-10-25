@@ -29,7 +29,6 @@ namespace NexIsland.ViewModels
         Lyrics,
         Battery,
         Network,
-        Ai,
         Search,
         Routines,
         Launcher,
@@ -84,7 +83,6 @@ namespace NexIsland.ViewModels
         private readonly GamingModeService _gamingService = GamingModeService.Instance;
         private readonly NotificationService _notificationService = NotificationService.Instance;
         private readonly SmartActivityService _activityService = SmartActivityService.Instance;
-        private readonly AiService _aiService = AiService.Instance;
         private readonly SearchService _searchService = SearchService.Instance;
         private readonly RoutineService _routineService = RoutineService.Instance;
         private readonly RealtimeService _realtimeService = RealtimeService.Instance;
@@ -169,7 +167,6 @@ namespace NexIsland.ViewModels
             OnPropertyChanged(nameof(IsSystemModule));
             OnPropertyChanged(nameof(IsBatteryModule));
             OnPropertyChanged(nameof(IsNetworkModule));
-            OnPropertyChanged(nameof(IsAiModule));
             OnPropertyChanged(nameof(IsSearchModule));
             OnPropertyChanged(nameof(IsRoutinesModule));
             OnPropertyChanged(nameof(IsLauncherModule));
@@ -197,6 +194,7 @@ namespace NexIsland.ViewModels
 
             OnPropertyChanged(nameof(ActiveModuleName));
             OnPropertyChanged(nameof(ActiveModuleIndexText));
+            OnPropertyChanged(nameof(ActiveModuleIndex));
             OnPropertyChanged(nameof(ActiveModuleLiveBadge));
             OnPropertyChanged(nameof(ActiveModuleLiveColor));
             OnPropertyChanged(nameof(ActiveModuleLiveDetail));
@@ -219,7 +217,6 @@ namespace NexIsland.ViewModels
         public bool IsSystemModule => _currentModule == IslandModule.System;
         public bool IsBatteryModule => _currentModule == IslandModule.Battery;
         public bool IsNetworkModule => _currentModule == IslandModule.Network;
-        public bool IsAiModule => _currentModule == IslandModule.Ai;
         public bool IsSearchModule => _currentModule == IslandModule.Search;
         public bool IsRoutinesModule => _currentModule == IslandModule.Routines;
         public bool IsLauncherModule => _currentModule == IslandModule.Launcher;
@@ -253,7 +250,6 @@ namespace NexIsland.ViewModels
             IslandModule.System => "System Monitor",
             IslandModule.Battery => "Smart Battery",
             IslandModule.Network => "Network Monitor",
-            IslandModule.Ai => "Smart AI Island",
             IslandModule.Search => "Universal Search",
             IslandModule.Routines => "Smart Routines",
             IslandModule.Launcher => "Quick Launcher",
@@ -664,16 +660,6 @@ namespace NexIsland.ViewModels
         public ICommand MoveModuleDownCommand { get; }
         public ObservableCollection<string> ModuleOrderList { get; } = new();
 
-        // Smart AI Commands & Properties
-        public ObservableCollection<AiMessage> AiHistory => _aiService.ConversationHistory;
-        private string _aiPrompt = string.Empty;
-        public string AiPrompt { get => _aiPrompt; set => SetProperty(ref _aiPrompt, value); }
-        public bool IsAiThinking => _aiService.IsThinking;
-        public ICommand SendAiPromptCommand { get; }
-        public ICommand ClearAiHistoryCommand { get; }
-        public ICommand QuickAiActionCommand { get; }
-        public ICommand SetAiApiKeyCommand { get; }
-
         // Universal Search Commands & Properties
         private string _universalSearchQuery = string.Empty;
         public string UniversalSearchQuery
@@ -899,44 +885,6 @@ namespace NexIsland.ViewModels
                 return Task.CompletedTask;
             });
 
-            // Smart AI commands
-            SendAiPromptCommand = new AsyncRelayCommand(async () =>
-            {
-                if (string.IsNullOrWhiteSpace(AiPrompt)) return;
-                string prompt = AiPrompt;
-                AiPrompt = string.Empty;
-                await _aiService.AskAsync(prompt);
-            });
-
-            ClearAiHistoryCommand = new RelayCommand(() => _aiService.ClearHistory());
-
-            QuickAiActionCommand = new AsyncRelayCommand(p =>
-            {
-                if (p is string action)
-                {
-                    string prompt = action switch
-                    {
-                        "summarize" => $"Summarize the following text clearly with key bullet points: {_clipboardService.History.FirstOrDefault()?.Content ?? "NexIsland Dynamic Island on Windows 10/11"}",
-                        "checklist" => "Create a practical 4-step focus checklist for my upcoming work session",
-                        "plan" => "Create an optimized 2-hour daily study and deep work plan using Pomodoro intervals",
-                        "tips" => "Show top 5 essential Windows 10/11 power shortcuts and productive tips",
-                        "routine" => "Suggest a smart automation routine for deep work mode",
-                        _ => action
-                    };
-                    return _aiService.AskAsync(prompt);
-                }
-                return Task.CompletedTask;
-            });
-
-            SetAiApiKeyCommand = new RelayCommand(p =>
-            {
-                if (p is string key)
-                {
-                    _aiService.SetApiKey(key);
-                    NotificationService.Instance.PostNotification("AI Configuration", "API key updated and securely encrypted in local vault.", "NexIsland AI", "🤖");
-                }
-            });
-
             // Universal Search commands
             OpenUniversalSearchCommand = new RelayCommand(OpenUniversalSearch);
             CloseUniversalSearchCommand = new RelayCommand(CloseUniversalSearch);
@@ -997,7 +945,7 @@ namespace NexIsland.ViewModels
                 _settingsService.Current.ModuleOrder = new List<string>
                 {
                     "Music", "System", "Focus", "Lyrics", "Battery", "Network",
-                    "Ai", "Search", "Routines", "Launcher", "Notifications", "Weather",
+                    "Search", "Routines", "Launcher", "Notifications", "Weather",
                     "Calendar", "Clipboard", "Visualizer", "Controls", "Gaming",
                     "FileDrop", "Activity", "Themes", "Plugins"
                 };
@@ -1138,7 +1086,6 @@ namespace NexIsland.ViewModels
             _clipboardService.Initialize(window);
             HotKeyService.Instance.Initialize(window);
             HotKeyService.Instance.SearchHotKeyPressed += () => Application.Current?.Dispatcher.Invoke(OpenUniversalSearch);
-            _aiService.ThinkingStateChanged += _ => OnPropertyChanged(nameof(IsAiThinking));
             _routineService.RoutinesChanged += () => OnPropertyChanged(nameof(SmartRoutines));
 
             await _mediaService.InitializeAsync();
@@ -1434,7 +1381,7 @@ namespace NexIsland.ViewModels
                     break;
                 case IslandVisualState.Expanded:
                     Width = Math.Max(s.ExpandedWidth, 400);
-                    Height = Math.Max(s.ExpandedHeight, 240);
+                    Height = Math.Max(s.ExpandedHeight, 260);
                     CornerRadius = 20;
                     Opacity = 0.98;
                     break;

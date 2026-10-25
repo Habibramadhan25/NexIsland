@@ -244,7 +244,7 @@
                             </StackPanel>
 
                             <!-- Minimalist Active Module Position Bar Indicator -->
-                            <ProgressBar Value="{Binding ActiveModuleIndex, Mode=OneWay}" Minimum="0" Maximum="20" Height="2" Width="64"
+                            <ProgressBar Value="{Binding ActiveModuleIndex, Mode=OneWay}" Minimum="0" Maximum="19" Height="2" Width="64"
                                          Background="#181824" Foreground="{StaticResource IslandAccentGradient}" BorderThickness="0" Margin="0,2,0,1" HorizontalAlignment="Center"/>
                         </StackPanel>
                     </Border>
@@ -543,102 +543,6 @@
                                 <TextBlock Text="{Binding NetworkSpeedText}" FontSize="13" FontWeight="Bold" Foreground="{StaticResource IslandForegroundBrush}" HorizontalAlignment="Center"/>
                                 <TextBlock Text="Ping: 1.1.1.1 Active • Low Latency" FontSize="10" Foreground="{StaticResource IslandDimForegroundBrush}" HorizontalAlignment="Center" Margin="0,8,0,0"/>
                             </StackPanel>
-                        </Border>
-                    </Grid>
-
-                    <!-- ============================================== -->
-                    <!-- MODULE 7: SMART AI ISLAND                      -->
-                    <!-- ============================================== -->
-                    <Grid Visibility="{Binding IsAiModule, Converter={StaticResource BoolToVis}}">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-
-                        <!-- Header with Quick Action Pills -->
-                        <Grid Grid.Row="0" Margin="0,0,0,6">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-
-                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Style="{StaticResource IslandModePillButtonStyle}" Command="{Binding QuickAiActionCommand}" CommandParameter="summarize" Content="📋 Summarize" Margin="0,0,4,0" Padding="6,2" FontSize="9"/>
-                                    <Button Style="{StaticResource IslandModePillButtonStyle}" Command="{Binding QuickAiActionCommand}" CommandParameter="checklist" Content="✅ Checklist" Margin="0,0,4,0" Padding="6,2" FontSize="9"/>
-                                    <Button Style="{StaticResource IslandModePillButtonStyle}" Command="{Binding QuickAiActionCommand}" CommandParameter="plan" Content="🎯 Study Plan" Margin="0,0,4,0" Padding="6,2" FontSize="9"/>
-                                    <Button Style="{StaticResource IslandModePillButtonStyle}" Command="{Binding QuickAiActionCommand}" CommandParameter="tips" Content="⚡ Shortcuts" Margin="0,0,4,0" Padding="6,2" FontSize="9"/>
-                                    <Button Style="{StaticResource IslandModePillButtonStyle}" Command="{Binding QuickAiActionCommand}" CommandParameter="routine" Content="🤖 Routine" Padding="6,2" FontSize="9"/>
-                                </StackPanel>
-                            </ScrollViewer>
-
-                            <Button Grid.Column="1" Style="{StaticResource IslandWindowHeaderButtonStyle}" Command="{Binding ClearAiHistoryCommand}" ToolTip="Clear Conversation" Width="18" Height="18" Margin="4,0,0,0">
-                                <Path Data="{StaticResource GeoClose}" Stroke="{StaticResource IslandDimForegroundBrush}" StrokeThickness="1.5" Width="7" Height="7" Stretch="Uniform"/>
-                            </Button>
-                        </Grid>
-
-                        <!-- Conversation Chat Bubble Stream -->
-                        <Border Grid.Row="1" Background="{StaticResource IslandPanelBrush}" BorderBrush="#1C1C26" BorderThickness="1" CornerRadius="12" Padding="8,6">
-                            <Grid>
-                                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                                    <ItemsControl ItemsSource="{Binding AiHistory}">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <Grid Margin="0,2,0,4">
-                                                    <!-- User Message Bubble (Right-aligned) -->
-                                                    <Border HorizontalAlignment="Right" Background="#1E1E2C" BorderBrush="#2D2D42" BorderThickness="1"
-                                                            CornerRadius="10,10,2,10" Padding="8,5" MaxWidth="300"
-                                                            Visibility="{Binding IsUser, Converter={StaticResource BoolToVis}}">
-                                                        <TextBlock Text="{Binding Content}" FontSize="10.5" Foreground="{StaticResource IslandForegroundBrush}" TextWrapping="Wrap"/>
-                                                    </Border>
-
-                                                    <!-- Assistant Message Bubble (Left-aligned) -->
-                                                    <Border HorizontalAlignment="Left" Background="#14141C" BorderBrush="#222230" BorderThickness="1"
-                                                            CornerRadius="10,10,10,2" Padding="8,5" MaxWidth="320"
-                                                            Visibility="{Binding IsAssistant, Converter={StaticResource BoolToVis}}">
-                                                        <StackPanel>
-                                                            <TextBlock Text="{Binding Content}" FontSize="10.5" Foreground="{StaticResource IslandForegroundBrush}" TextWrapping="Wrap"/>
-                                                            <TextBlock Text="{Binding FormattedTime}" FontSize="8.5" Foreground="{StaticResource IslandDimForegroundBrush}" HorizontalAlignment="Right" Margin="0,2,0,0"/>
-                                                        </StackPanel>
-                                                    </Border>
-                                                </Grid>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
-                                </ScrollViewer>
-
-                                <!-- Thinking Status Overlay -->
-                                <Border VerticalAlignment="Bottom" Background="#1A1A28" CornerRadius="8" Padding="8,3" BorderBrush="#3B82F6" BorderThickness="1"
-                                        HorizontalAlignment="Center" Margin="0,0,0,2"
-                                        Visibility="{Binding IsAiThinking, Converter={StaticResource BoolToVis}}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Path Data="{StaticResource GeoActivity}" Fill="{StaticResource IslandAccentPrimaryBrush}" Width="9" Height="9" Stretch="Uniform" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                                        <TextBlock Text="Thinking..." FontSize="9.5" FontWeight="SemiBold" Foreground="{StaticResource IslandAccentPrimaryBrush}" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </Border>
-                            </Grid>
-                        </Border>
-
-                        <!-- AI Prompt Input Row -->
-                        <Border Grid.Row="2" Background="#12121A" CornerRadius="10" Padding="8,4" BorderBrush="#1F1F2C" BorderThickness="1" Margin="0,6,0,0">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <TextBox Grid.Column="0" Text="{Binding AiPrompt, UpdateSourceTrigger=PropertyChanged}"
-                                         Background="Transparent" Foreground="{StaticResource IslandForegroundBrush}"
-                                         BorderThickness="0" FontSize="11" VerticalAlignment="Center">
-                                    <TextBox.InputBindings>
-                                        <KeyBinding Key="Enter" Command="{Binding SendAiPromptCommand}" />
-                                    </TextBox.InputBindings>
-                                </TextBox>
-                                <Button Grid.Column="1" Style="{StaticResource IslandMediaSecondaryButtonStyle}" Command="{Binding SendAiPromptCommand}"
-                                        Width="24" Height="24" Background="#1A1A26" BorderBrush="#2B2B3E" BorderThickness="1" ToolTip="Send Prompt (Enter)">
-                                    <Path Data="{StaticResource GeoSend}" Fill="{StaticResource IslandAccentPrimaryBrush}" Width="9" Height="9" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Button>
-                            </Grid>
                         </Border>
                     </Grid>
 
@@ -1357,19 +1261,30 @@
                     </Grid>
                 </Grid>
 
-                <!-- Bottom Quick Navigation Bar (Clickable Module Selector) -->
+                <!-- Bottom Quick Navigation Bar (Clickable 20-Module Direct Selector) -->
                 <Border Grid.Row="2" Margin="0,6,0,0" Padding="0,4,0,0" BorderBrush="#1C1C28" BorderThickness="0,1,0,0">
                     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Focusable="False">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Music" Content="🎵 Music" ToolTip="Music Player"/>
-                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Controls" Content="🎛️ Controls" ToolTip="Brightness &amp; Volume"/>
-                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Lyrics" Content="🎤 Lyrics" ToolTip="Live Lyrics"/>
-                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="System" Content="📊 System" ToolTip="Hardware Stats"/>
-                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Focus" Content="⏱️ Focus" ToolTip="Pomodoro Timer"/>
-                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Ai" Content="🤖 AI" ToolTip="AI Copilot"/>
-                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Weather" Content="🌤️ Weather" ToolTip="Weather Forecast"/>
-                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Launcher" Content="🚀 Apps" ToolTip="App Launcher"/>
-                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Themes" Content="⚙️ Themes" ToolTip="Themes &amp; Settings"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Controls" Content="🎛️ Controls" ToolTip="Quick Controls (Brightness &amp; Volume)"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Lyrics" Content="🎤 Lyrics" ToolTip="Live Synchronized Lyrics"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Visualizer" Content="📊 Visualizer" ToolTip="Hardware Audio Equalizer"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="System" Content="💻 System" ToolTip="CPU, RAM &amp; Disk Monitor"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Battery" Content="🔋 Battery" ToolTip="Battery &amp; Power State"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Network" Content="🌐 Network" ToolTip="Network Speed &amp; Latency"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Search" Content="🔍 Search" ToolTip="Universal Search (Alt+Space)"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Routines" Content="⚡ Routines" ToolTip="Smart Automated Routines"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Launcher" Content="🚀 Apps" ToolTip="Quick App Launcher"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Notifications" Content="🔔 Alerts" ToolTip="Notification Center"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Clipboard" Content="📋 Clipboard" ToolTip="Clipboard History"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Weather" Content="🌤️ Weather" ToolTip="Live Weather Forecast"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Calendar" Content="📅 Agenda" ToolTip="Reminders &amp; Calendar"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Focus" Content="⏱️ Focus" ToolTip="Pomodoro Focus Timer"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Activity" Content="🎯 Activity" ToolTip="Multi-Task Operations"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Gaming" Content="🎮 Gaming" ToolTip="Gaming Mode"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="FileDrop" Content="📁 FileDrop" ToolTip="File Drag &amp; Drop Zone"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Themes" Content="🎨 Themes" ToolTip="Themes &amp; Settings"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Plugins" Content="🧩 Plugins" ToolTip="Plugin System"/>
                         </StackPanel>
                     </ScrollViewer>
                 </Border>

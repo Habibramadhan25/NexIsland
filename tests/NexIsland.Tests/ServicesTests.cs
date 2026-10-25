@@ -382,21 +382,20 @@ namespace NexIsland.Tests
         }
 
         [Fact]
-        public void EffectiveModules_ContainsAll21ModulesInSequence()
+        public void EffectiveModules_ContainsAll20ModulesInSequence()
         {
             var vm = new MainViewModel();
             var list = vm.GetEffectiveModuleList();
 
-            Assert.Equal(21, list.Count);
+            Assert.Equal(20, list.Count);
             Assert.Equal(IslandModule.Music, list[0]);
             Assert.Equal(IslandModule.System, list[1]);
             Assert.Equal(IslandModule.Focus, list[2]);
             Assert.Equal(IslandModule.Lyrics, list[3]);
             Assert.Equal(IslandModule.Battery, list[4]);
             Assert.Equal(IslandModule.Network, list[5]);
-            Assert.Equal(IslandModule.Ai, list[6]);
-            Assert.Equal(IslandModule.Search, list[7]);
-            Assert.Equal(IslandModule.Routines, list[8]);
+            Assert.Equal(IslandModule.Search, list[6]);
+            Assert.Equal(IslandModule.Routines, list[7]);
         }
     }
 

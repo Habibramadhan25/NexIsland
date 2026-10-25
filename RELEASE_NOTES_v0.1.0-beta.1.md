@@ -6,10 +6,11 @@ Welcome to the first public beta release of **NexIsland** — the premium, light
 
 ## 🌟 What's New in v0.1.0-beta.1
 
-### 1. 🤖 Smart AI Island
-- Integrated AI assistant right inside the island capsule.
-- **Offline Mode**: Instant text summarization, task checklists, study plans, Windows power shortcuts, and routine ideas.
-- **Cloud Connect**: Pluggable support for OpenAI / Groq / Ollama with API keys encrypted locally using **Windows DPAPI** (`ProtectedData`). Never stored in plain text.
+### 1. 🎛️ Direct Navigation Bar & Swipe Navigation (All 20 Modules Unlocked)
+- Fluid bottom direct module selection bar and swipe navigation across all 20 modules:
+  `Music → Controls → Lyrics → Visualizer → System → Battery → Network → Search → Routines → Launcher → Notifications → Clipboard → Weather → Calendar → Focus → Activity → Gaming → File Drop → Themes → Plugins`
+- Direct 1-click access from the bottom navigation bar to instantly jump to any feature.
+- Fully customizable module order directly within the island — no separate settings window needed!
 
 ### 2. 🔍 Universal Search (`Alt + Space`)
 - Global floating launcher available from anywhere in Windows with `Alt + Space`.
@@ -24,18 +25,13 @@ Welcome to the first public beta release of **NexIsland** — the premium, light
   - **Battery Saver Mode**: Auto-triggers at battery `<= 20%` on laptop power.
   - **Music Mode & Scheduled Routines**: Run actions on daily schedules or with a single click.
 
-### 4. 🎛️ Unified Swipe Navigation (21 Modules)
-- Fluid horizontal swipe navigation across 21 modules:
-  `Music → System → Focus → Lyrics → Battery → Network → AI → Search → Routines → Launcher → Notifications → Weather → Calendar → Clipboard → Visualizer → Quick Controls → Gaming → File Drop → Activity → Themes → Plugins`
-- Fully customizable module order directly within the island — no separate settings window needed!
-
-### 5. 🎵 Real-time Media & Live Data
+### 4. 🎵 Real-time Media & Live Data
 - **GSMTC Integration**: Spotify, Apple Music, YouTube/Chrome/Edge title, artist, album art, Play/Pause, and real-time progress.
 - Fixed duration bug (`00:00 / 00:00`) with smooth interactive scrubber seek.
 - **WASAPI Audio Visualizer**: Live hardware audio loopback equalizer.
 - **Live Status Badges**: Every module displays real-time connectivity status (`LIVE`, `SYNCING`, `OFFLINE`, `UNAVAILABLE`).
 
-### 6. 🔆 Realtime Brightness & Sound Controls
+### 5. 🔆 Realtime Brightness & Sound Controls
 - **Windows Core Audio API (`IAudioEndpointVolume`)**:
   - Realtime master volume slider (0–100%) synced with system hardware in both directions.
   - Interactive Mute / Unmute button with reactive vector speaker icon.
@@ -52,7 +48,7 @@ Welcome to the first public beta release of **NexIsland** — the premium, light
 
 | Asset | Size | SHA-256 Checksum |
 | :--- | :--- | :--- |
-| **NexIsland-v0.1.0-beta.1-Setup.exe** | ~6.77 MB | `3C22A47E94265D3E02B72F9E0DA269E35F1F1D3FC1442DF67F6F384E02DAD406` |
+| **NexIsland-v0.1.0-beta.1-Setup.exe** | ~6.77 MB | `A0C3C9A84D6A8A7E2AE8AC3D6663A06A716B5B1A65AEAA4781FFB3FA31E9E423` |
 
 ### Verifying SHA-256 in PowerShell:
 ```powershell

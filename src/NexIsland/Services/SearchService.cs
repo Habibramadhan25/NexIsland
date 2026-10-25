@@ -59,20 +59,21 @@ namespace NexIsland.Services
         {
             // NexIsland Modules
             AddModuleItem("Music Player", "Switch to media playback & audio controls", "Music", "GeoMusic");
+            AddModuleItem("Quick Controls", "Brightness, volume & system power controls", "Controls", "GeoControls");
             AddModuleItem("Live Lyrics & Karaoke", "Synchronized real-time track lyrics", "Lyrics", "GeoLyrics");
             AddModuleItem("Audio Visualizer", "Hardware WASAPI audio equalizer", "Visualizer", "GeoVisualizer");
             AddModuleItem("System Monitor", "Real-time CPU, RAM and Network metrics", "System", "GeoCpu");
             AddModuleItem("Smart Battery", "Battery percentage and power options", "Battery", "GeoBattery");
             AddModuleItem("Network Monitor", "Wi-Fi & Ethernet bandwidth throughput", "Network", "GeoWifi");
-            AddModuleItem("Smart AI Island", "Integrated AI Desktop Assistant & Planner", "Ai", "GeoActivity");
             AddModuleItem("Universal Search", "Fast search across apps, files & settings", "Search", "GeoSearch");
             AddModuleItem("Smart Routines", "Automate Study, Gaming & Battery Saver modes", "Routines", "GeoControls");
-            AddModuleItem("Focus & Pomodoro", "25m focus timer & productivity tracker", "Focus", "GeoFocus");
             AddModuleItem("Quick Launcher", "Fast access to pinned shortcuts & apps", "Launcher", "GeoApps");
             AddModuleItem("Notification Center", "Manage Windows & NexIsland notifications", "Notifications", "GeoBell");
             AddModuleItem("Clipboard History", "Search, pin and copy clipboard items", "Clipboard", "GeoClip");
             AddModuleItem("Weather", "Current weather conditions & forecasts", "Weather", "GeoWeather");
             AddModuleItem("Agenda & Reminders", "Calendar reminders and schedule", "Calendar", "GeoCalendar");
+            AddModuleItem("Focus & Pomodoro", "25m focus timer & productivity tracker", "Focus", "GeoFocus");
+            AddModuleItem("Smart Activity Island", "Multi-tasking background operations", "Activity", "GeoActivity");
             AddModuleItem("Gaming Mode", "Low polling profile for zero FPS drop", "Gaming", "GeoGame");
             AddModuleItem("File Drop Zone", "Direct file drag-and-drop workspace", "FileDrop", "GeoFileDrop");
             AddModuleItem("Themes & Island Setup", "Personalize accents, presets & module order", "Themes", "GeoPalette");

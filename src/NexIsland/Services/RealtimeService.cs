@@ -67,7 +67,6 @@ namespace NexIsland.Services
             SetStatus("Lyrics", ModuleLiveStatus.Updating, "Synchronizing Track Timestamps");
             SetStatus("Battery", ModuleLiveStatus.Live, "Win32 GetSystemPowerStatus");
             SetStatus("Network", ModuleLiveStatus.Live, "NetworkInterface Hardware Sampling");
-            SetStatus("Ai", ModuleLiveStatus.Live, "NexIsland Copilot Engine (DPAPI Protected)");
             SetStatus("Search", ModuleLiveStatus.Live, "Universal Indexer (Start Menu, Settings, Shell)");
             SetStatus("Routines", ModuleLiveStatus.Live, "Automated Activity Triggers Active");
             SetStatus("Launcher", ModuleLiveStatus.Live, "Windows Shell Shortcuts");
