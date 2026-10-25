@@ -239,7 +239,7 @@
                             </StackPanel>
 
                             <!-- Minimalist Active Module Position Bar Indicator -->
-                            <ProgressBar Value="{Binding ActiveModuleIndex}" Minimum="0" Maximum="20" Height="2" Width="64"
+                            <ProgressBar Value="{Binding ActiveModuleIndex, Mode=OneWay}" Minimum="0" Maximum="20" Height="2" Width="64"
                                          Background="#181824" Foreground="{StaticResource IslandAccentGradient}" BorderThickness="0" Margin="0,2,0,1" HorizontalAlignment="Center"/>
                         </StackPanel>
                     </Border>

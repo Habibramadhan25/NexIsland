@@ -289,6 +289,14 @@ namespace NexIsland.ViewModels
                 int idx = list.IndexOf(_currentModule);
                 return idx >= 0 ? idx : 0;
             }
+            set
+            {
+                var list = GetEffectiveModuleList();
+                if (value >= 0 && value < list.Count)
+                {
+                    CurrentModule = list[value];
+                }
+            }
         }
 
         public double Width
