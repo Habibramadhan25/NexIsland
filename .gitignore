@@ -1,0 +1,38 @@
+# ===================================================
+# NexIsland .gitignore
+# ===================================================
+
+# Build & Compilation Artifacts
+[Bb]in/
+[Oo]bj/
+dist/
+publish/
+TestResults/
+*.log
+stdout.txt
+stderr.txt
+
+# Visual Studio & IDEs
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Windows System Files
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# Private Credentials, API Vaults & Personal Data (Security Enforcement)
+ai_vault.dat
+settings.json
+weather_cache.json
+clipboard_history.json
+routines.json
+*.key
+*.pfx
+*.pem
+*.env
