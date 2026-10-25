@@ -92,7 +92,7 @@ namespace NexIsland.ViewModels
         private readonly AudioControlService _audioControlService = AudioControlService.Instance;
 
         #region Island State & Dimensions
-        private IslandVisualState _state = IslandVisualState.Compact;
+        private IslandVisualState _state = IslandVisualState.Expanded;
         private IslandModule _currentModule = IslandModule.Music;
         private double _width;
         private double _height;
@@ -772,10 +772,10 @@ namespace NexIsland.ViewModels
         public MainViewModel()
         {
             var s = _settingsService.Current;
-            _width = s.CompactWidth;
-            _height = s.CompactHeight;
-            _cornerRadius = s.CornerRadius;
-            _opacity = s.OpacityLevel;
+            _width = s.ExpandedWidth;
+            _height = s.ExpandedHeight;
+            _cornerRadius = 20;
+            _opacity = 0.98;
 
             if (Enum.TryParse<IslandModule>(s.LastActiveModule, out var savedMod))
             {
