@@ -191,6 +191,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <!-- Header Row: Brand Capsule, Swipe Navigation Controls & Collapse -->
@@ -215,13 +216,17 @@
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <!-- Previous Module Swipe Button -->
-                                <Button Style="{StaticResource IslandWindowHeaderButtonStyle}" Command="{Binding PrevModuleCommand}" ToolTip="Previous Module (Swipe Right / Left Arrow)" Width="18" Height="18" Margin="0,0,6,0">
+                                <Button Style="{StaticResource IslandWindowHeaderButtonStyle}" Command="{Binding PrevModuleCommand}" ToolTip="Previous Module (Left Arrow)" Width="24" Height="22" Margin="0,0,6,0">
                                     <Path Data="{StaticResource GeoChevronLeft}" Stroke="{StaticResource IslandMutedForegroundBrush}" StrokeThickness="1.5" Width="6" Height="8" Stretch="Uniform"/>
                                 </Button>
 
-                                <!-- Active Module Title & Index -->
-                                <TextBlock Text="{Binding ActiveModuleName}" FontSize="11" FontWeight="SemiBold" Foreground="{StaticResource IslandForegroundBrush}" VerticalAlignment="Center"/>
-                                <TextBlock Text="{Binding ActiveModuleIndexText, StringFormat=' ({0})'}" FontSize="10" Foreground="{StaticResource IslandDimForegroundBrush}" VerticalAlignment="Center" Margin="3,0,4,0"/>
+                                <!-- Active Module Title & Index (Click to Switch) -->
+                                <Button Style="{StaticResource IslandGhostButtonStyle}" Command="{Binding NextModuleCommand}" ToolTip="Click to Cycle Module">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding ActiveModuleName}" FontSize="11" FontWeight="SemiBold" Foreground="{StaticResource IslandForegroundBrush}" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding ActiveModuleIndexText, StringFormat=' ({0})'}" FontSize="10" Foreground="{StaticResource IslandDimForegroundBrush}" VerticalAlignment="Center" Margin="3,0,4,0"/>
+                                    </StackPanel>
+                                </Button>
 
                                 <!-- Realtime Live Status Indicator Pill -->
                                 <Border Background="#14141E" CornerRadius="5" Padding="4,1.5" Margin="0,0,6,0" VerticalAlignment="Center" BorderBrush="#202030" BorderThickness="1"
@@ -233,7 +238,7 @@
                                 </Border>
 
                                 <!-- Next Module Swipe Button -->
-                                <Button Style="{StaticResource IslandWindowHeaderButtonStyle}" Command="{Binding NextModuleCommand}" ToolTip="Next Module (Swipe Left / Right Arrow)" Width="18" Height="18">
+                                <Button Style="{StaticResource IslandWindowHeaderButtonStyle}" Command="{Binding NextModuleCommand}" ToolTip="Next Module (Right Arrow)" Width="24" Height="22">
                                     <Path Data="{StaticResource GeoChevronRight}" Stroke="{StaticResource IslandMutedForegroundBrush}" StrokeThickness="1.5" Width="6" Height="8" Stretch="Uniform"/>
                                 </Button>
                             </StackPanel>
@@ -246,7 +251,7 @@
 
                     <!-- Header Action Buttons (Only Collapse, No Settings Gear) -->
                     <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
-                        <Button Style="{StaticResource IslandWindowHeaderButtonStyle}" Command="{Binding CollapseCommand}" ToolTip="Collapse Island">
+                        <Button Style="{StaticResource IslandWindowHeaderButtonStyle}" Command="{Binding CollapseCommand}" ToolTip="Collapse Island" Width="24" Height="22">
                             <Path Data="{StaticResource GeoClose}" Stroke="{StaticResource IslandMutedForegroundBrush}" StrokeThickness="1.5" Width="8" Height="8" Stretch="Uniform"/>
                         </Button>
                     </StackPanel>
@@ -383,11 +388,13 @@
                                 <TextBlock Text="{Binding PreviousLyricLine}" FontSize="11" Foreground="{StaticResource IslandDimForegroundBrush}"
                                            TextAlignment="Center" TextTrimming="CharacterEllipsis" Margin="0,0,0,8" Opacity="0.5"/>
 
-                                <!-- Active Line with Neon Glow -->
-                                <Border Background="#181826" CornerRadius="10" Padding="12,8" BorderBrush="#3B82F6" BorderThickness="1">
-                                    <TextBlock Text="{Binding CurrentLyricLine}" FontSize="13.5" FontWeight="Bold"
-                                               Foreground="{StaticResource IslandForegroundBrush}" TextAlignment="Center" TextWrapping="Wrap"/>
-                                </Border>
+                                <!-- Active Line with Neon Glow (Click to Play/Pause) -->
+                                <Button Style="{StaticResource IslandGhostButtonStyle}" Command="{Binding PlayPauseCommand}" ToolTip="Click to Play / Pause Music" HorizontalAlignment="Center">
+                                    <Border Background="#181826" CornerRadius="10" Padding="14,8" BorderBrush="#3B82F6" BorderThickness="1.2">
+                                        <TextBlock Text="{Binding CurrentLyricLine}" FontSize="13.5" FontWeight="Bold"
+                                                   Foreground="{StaticResource IslandForegroundBrush}" TextAlignment="Center" TextWrapping="Wrap"/>
+                                    </Border>
+                                </Button>
 
                                 <!-- Next Line -->
                                 <TextBlock Text="{Binding NextLyricLine}" FontSize="11" Foreground="{StaticResource IslandDimForegroundBrush}"
@@ -1349,6 +1356,23 @@
                         </ScrollViewer>
                     </Grid>
                 </Grid>
+
+                <!-- Bottom Quick Navigation Bar (Clickable Module Selector) -->
+                <Border Grid.Row="2" Margin="0,6,0,0" Padding="0,4,0,0" BorderBrush="#1C1C28" BorderThickness="0,1,0,0">
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Focusable="False">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Music" Content="🎵 Music" ToolTip="Music Player"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Controls" Content="🎛️ Controls" ToolTip="Brightness &amp; Volume"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Lyrics" Content="🎤 Lyrics" ToolTip="Live Lyrics"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="System" Content="📊 System" ToolTip="Hardware Stats"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Focus" Content="⏱️ Focus" ToolTip="Pomodoro Timer"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Ai" Content="🤖 AI" ToolTip="AI Copilot"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Weather" Content="🌤️ Weather" ToolTip="Weather Forecast"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Launcher" Content="🚀 Apps" ToolTip="App Launcher"/>
+                            <Button Style="{StaticResource IslandModuleTabButtonStyle}" Command="{Binding SelectModuleCommand}" CommandParameter="Themes" Content="⚙️ Themes" ToolTip="Themes &amp; Settings"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Border>
             </Grid>
 
             <!-- ============================================== -->

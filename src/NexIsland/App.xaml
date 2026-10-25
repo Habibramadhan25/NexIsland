@@ -184,6 +184,60 @@
                 </Setter>
             </Style>
 
+            <!-- Bottom Navigation Module Tab Button Style -->
+            <Style x:Key="IslandModuleTabButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="#101016" />
+                <Setter Property="Foreground" Value="{StaticResource IslandMutedForegroundBrush}" />
+                <Setter Property="BorderBrush" Value="#1C1C28" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="FontSize" Value="10" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="Padding" Value="7,3" />
+                <Setter Property="Margin" Value="2,0" />
+                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="tabBorder"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="6"
+                                    Padding="{TemplateBinding Padding}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="tabBorder" Property="Background" Value="#222232" />
+                                    <Setter TargetName="tabBorder" Property="BorderBrush" Value="#3B82F6" />
+                                    <Setter Property="Foreground" Value="#FFFFFF" />
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="tabBorder" Property="Background" Value="#0D0D14" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!-- Ghost Interactive Container Button Style -->
+            <Style x:Key="IslandGhostButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
             <!-- Pill Mode Button for Activity Selectors (TargetType Button) -->
             <Style x:Key="IslandModePillButtonStyle" TargetType="Button">
                 <Setter Property="Background" Value="#181822" />

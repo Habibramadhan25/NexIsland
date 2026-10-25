@@ -76,7 +76,7 @@ namespace NexIsland.Settings
         public double CompactWidth { get; set; } = 220;
         public double CompactHeight { get; set; } = 34;
         public double ExpandedWidth { get; set; } = 390;
-        public double ExpandedHeight { get; set; } = 220;
+        public double ExpandedHeight { get; set; } = 240;
         public double CornerRadius { get; set; } = 17;
         public double OpacityLevel { get; set; } = 0.98;
         public double AnimationDurationSeconds { get; set; } = 0.35;

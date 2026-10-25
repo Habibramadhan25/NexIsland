@@ -1433,8 +1433,8 @@ namespace NexIsland.ViewModels
                     Opacity = s.OpacityLevel;
                     break;
                 case IslandVisualState.Expanded:
-                    Width = s.ExpandedWidth;
-                    Height = s.ExpandedHeight;
+                    Width = Math.Max(s.ExpandedWidth, 400);
+                    Height = Math.Max(s.ExpandedHeight, 240);
                     CornerRadius = 20;
                     Opacity = 0.98;
                     break;
